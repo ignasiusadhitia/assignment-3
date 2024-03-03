@@ -8,7 +8,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+    methods: {
+        redirectPage() {
+            setTimeout(() => this.$router.push({ name: "products" }), 3000);
+        },
+    },
+    mounted() {
+        this.redirectPage();
+    },
+};
 </script>
 
 <style scoped>

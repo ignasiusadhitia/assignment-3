@@ -31,16 +31,11 @@
         <p>Please add item.</p>
     </div>
     <div class="d-flex m-2 gap-2 justify-content-end">
-        <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            @click="backHandler"
-        >
+        <button type="button" class="btn btn-secondary" @click="backHandler">
             Back
         </button>
         <button
-            v-if="cart.length > 0 && !paymentMessageVisible"
+            v-if="cart.length > 0"
             type="button"
             class="btn btn-primary"
             @click="checkoutHandler"
