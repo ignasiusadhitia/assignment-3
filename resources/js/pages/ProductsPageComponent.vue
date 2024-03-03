@@ -1,66 +1,64 @@
 <template>
-    <page-layout-component>
-        <header-component>
+    <!-- <page-layout-component> -->
+    <!-- <header-component>
             <logo-component />
             <cart-icon-component
                 :count="parseInt(getTotalCartCount())"
                 @emit-click="showModalHandler(true)"
             />
-        </header-component>
+        </header-component> -->
 
-        <modal-component
-            title="My Cart"
-            :cartData="cart"
-            v-if="isModalVisible"
-            @emit-show-modal="showModalHandler(false)"
-        >
-            <div class="d-flex justify-content-end my-2">
-                <button
-                    v-if="cart.length"
-                    @click="clearCartHandler"
-                    class="btn btn-outline-danger"
-                >
-                    Clear Cart
-                </button>
-            </div>
+    <modal-component
+        title="My Cart"
+        :cartData="cart"
+        v-if="isModalVisible"
+        @emit-show-modal="showModalHandler(false)"
+    >
+        <div class="d-flex justify-content-end my-2">
+            <button
+                v-if="cart.length"
+                @click="clearCartHandler"
+                class="btn btn-outline-danger"
+            >
+                Clear Cart
+            </button>
+        </div>
+        <div>
+            <cart-list-component
+                :cart="cart"
+                @emit-remove-from-cart="removeFromCartHandler"
+                @emit-add-to-cart="addToCartHandler"
+                @emit-delete-cart-item="deleteCartItemHandler"
+                @emit-update-cart-item-count="updateCartItemCountHandler"
+            />
+        </div>
+        <div v-if="cart.length" class="mt-3 d-flex justify-content-end">
             <div>
-                <cart-list-component
-                    :cart="cart"
-                    @emit-remove-from-cart="removeFromCartHandler"
-                    @emit-add-to-cart="addToCartHandler"
-                    @emit-delete-cart-item="deleteCartItemHandler"
-                    @emit-update-cart-item-count="updateCartItemCountHandler"
-                />
-            </div>
-            <div v-if="cart.length" class="mt-3 d-flex justify-content-end">
                 <div>
-                    <div>
-                        Total item:
-                        <span class="fw-bold">{{ getTotalCartCount() }}</span>
-                    </div>
-                    <div>
-                        Total price:
-                        <span class="fw-bold"
-                            >Rp. {{ getTotalCartPrice() }}</span
-                        >
-                    </div>
+                    Total item:
+                    <span class="fw-bold">{{ getTotalCartCount() }}</span>
+                </div>
+                <div>
+                    Total price:
+                    <span class="fw-bold">Rp. {{ getTotalCartPrice() }}</span>
                 </div>
             </div>
-            <div v-else class="text-center">
-                <h2>Empty cart.</h2>
-                <p>Please add item.</p>
-            </div>
-        </modal-component>
+        </div>
+        <div v-else class="text-center">
+            <h2>Empty cart.</h2>
+            <p>Please add item.</p>
+        </div>
+    </modal-component>
 
-        <products-list-component
-            :products="products"
-            :get-remaining-stock="getRemainingStock"
-            :get-product-count-in-cart="getProductCountInCart"
-            @emit-add-to-cart="addToCartHandler"
-        />
+    <products-list-component
+        :products="products"
+        :get-remaining-stock="getRemainingStock"
+        :get-product-count-in-cart="getProductCountInCart"
+        @emit-add-to-cart="addToCartHandler"
+    />
 
-        <footer-component />
-    </page-layout-component>
+    <!-- <footer-component /> -->
+    <!-- </page-layout-component> -->
 </template>
 
 <script>

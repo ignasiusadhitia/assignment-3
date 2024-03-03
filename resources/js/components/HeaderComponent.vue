@@ -1,6 +1,7 @@
 <template>
     <header class="header-container justify-content-between">
-        <slot />
+        <logo-component />
+        <cart-icon-component />
     </header>
 </template>
 

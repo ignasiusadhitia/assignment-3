@@ -1,6 +1,10 @@
 <template>
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <slot />
+        <header-component />
+
+        <router-view></router-view>
+
+        <footer-component />
     </div>
 </template>
 
