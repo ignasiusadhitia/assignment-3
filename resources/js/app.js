@@ -8,6 +8,7 @@ import "./bootstrap";
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { routes } from "./routes";
+import store from "./store";
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -45,9 +46,6 @@ app.component("input-component", InputComponent);
 import LogoComponent from "./components/LogoComponent.vue";
 app.component("logo-component", LogoComponent);
 
-import ModalComponent from "./components/ModalComponent.vue";
-app.component("modal-component", ModalComponent);
-
 import ProductCardComponent from "./components/ProductCardComponent.vue";
 app.component("product-card-component", ProductCardComponent);
 
@@ -75,4 +73,4 @@ app.component("text-component", TextComponent);
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
-app.use(router).mount("#app");
+app.use(store).use(router).mount("#app");

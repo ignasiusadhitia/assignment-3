@@ -17,7 +17,8 @@
                     <div class="d-flex flex-row justify-content-between w-100">
                         <p class="card-text">
                             <small class="text-body-secondary"
-                                >Stock: {{ getRemainingStock(product) }}</small
+                                >Stock:
+                                {{ getRemainingStockHandler(product) }}</small
                             >
                         </p>
                         <div>
@@ -31,7 +32,7 @@
                                 :disabled="
                                     product.stock === 0 ||
                                     product.stock <=
-                                        getProductCountInCart(product.id)
+                                        getProductCountInCartHandler(product.id)
                                 "
                             >
                                 Add to Cart
@@ -45,26 +46,28 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-    emits: ["emit-add-to-cart"],
     props: {
         product: {
             type: Object,
             required: true,
         },
-        getRemainingStock: {
-            type: Function,
-        },
-        getProductCountInCart: {
-            type: Function,
-        },
+    },
+    computed: {
+        ...mapGetters(["getRemainingStock", "getProductCountInCart"]),
     },
     methods: {
+        getRemainingStockHandler(product) {
+            return this.getRemainingStock(product);
+        },
+        getProductCountInCartHandler(id) {
+            return this.getProductCountInCart(id);
+        },
         addToCart(product) {
-            this.$emit("emit-add-to-cart", product);
+            this.$store.dispatch("addToCart", product);
         },
     },
 };
 </script>
-
-<style></style>

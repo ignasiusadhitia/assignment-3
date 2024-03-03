@@ -16,7 +16,7 @@
                         </h5>
                         <span
                             class="text-danger delete-button"
-                            @click="deleteCartItem(product.id)"
+                            @click="deleteCartItemHandler(product.id)"
                         >
                             Delete
                         </span>
@@ -25,7 +25,7 @@
                         <small class="text-body-secondary">Qty: </small>
                         <div class="d-flex gap-1">
                             <button
-                                @click="removeFromCart(product.id)"
+                                @click="removeFromCartHandler(product.id)"
                                 class="btn btn-primary input-button"
                             >
                                 -
@@ -33,10 +33,10 @@
                             <input-component
                                 type="number"
                                 :value="product.count"
-                                @emit-change="updateCartItemCount"
+                                @emit-change="updateCartItemCountHandler"
                             />
                             <button
-                                @click="addToCart(product)"
+                                @click="addToCartHandler(product)"
                                 class="btn btn-primary input-button"
                             >
                                 +
@@ -59,32 +59,26 @@
 
 <script>
 export default {
-    emits: [
-        "emit-remove-from-cart",
-        "emit-add-to-cart",
-        "emit-delete-cart-item",
-        "emit-update-cart-item-count",
-    ],
     props: {
         product: {
             type: Object,
         },
     },
     methods: {
-        removeFromCart(id) {
-            this.$emit("emit-remove-from-cart", id);
+        removeFromCartHandler(id) {
+            this.$store.dispatch("removeFromCart", id);
         },
 
-        addToCart(product) {
-            this.$emit("emit-add-to-cart", product);
+        addToCartHandler(product) {
+            this.$store.dispatch("addToCart", product);
         },
 
-        deleteCartItem(id) {
-            this.$emit("emit-delete-cart-item", id);
+        deleteCartItemHandler(id) {
+            this.$store.dispatch("deleteCartItem", id);
         },
 
-        updateCartItemCount(newValue) {
-            this.$emit("emit-update-cart-item-count", {
+        updateCartItemCountHandler(newValue) {
+            this.$store.dispatch("updateCartItemCount", {
                 ...this.product,
                 count: newValue,
             });
