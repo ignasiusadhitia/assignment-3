@@ -63,7 +63,6 @@ export default {
                     count: 1,
                 });
             }
-            // this.showModalHandler(true);
         },
         REMOVE_FROM_CART(state, payload) {
             const index = state.cart.findIndex((item) => item.id === payload);
@@ -71,7 +70,6 @@ export default {
                 state.cart[index].count--;
                 if (state.cart[index].count === 0) {
                     state.cart.splice(index, 1);
-                    //             this.showModalHandler(false);
                 }
             }
         },
@@ -101,7 +99,6 @@ export default {
         },
         CLEAR_CART(state) {
             state.cart = [];
-            // this.showModalHandler(false);
         },
     },
 };
